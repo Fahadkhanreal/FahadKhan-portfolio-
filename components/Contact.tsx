@@ -14,7 +14,7 @@ export default function Contact() {
           transition={{ duration: 0.6 }}
         >
           <p className="text-[#64ffda] font-mono text-sm mb-4">
-            04. What's Next?
+            04. What&apos;s Next?
           </p>
 
           <h2 className="text-4xl md:text-5xl font-bold text-zinc-100 mb-6">

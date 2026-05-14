@@ -26,7 +26,7 @@ export default function Projects() {
             <span className="text-[#64ffda] font-mono text-xl mr-2">03.</span>
             Featured Projects
           </h2>
-          <p className="text-zinc-400 mb-12">Some things I've built</p>
+          <p className="text-zinc-400 mb-12">Some things I&apos;ve built</p>
         </motion.div>
 
         <motion.div
