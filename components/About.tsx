@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { aboutData } from "@/data/about";
 
 export default function About() {
@@ -74,10 +75,15 @@ export default function About() {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-[#64ffda] bg-zinc-900">
-                <div className="absolute inset-0 flex items-center justify-center text-zinc-600">
-                  [Your Photo Here]
-                </div>
+              <div className="relative aspect-square rounded-lg overflow-hidden border-2 border-[#64ffda] bg-black">
+                <Image
+                  src="/profile.jpg"
+                  alt="Fahad Khan"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  priority
+                />
               </div>
             </motion.div>
           </div>

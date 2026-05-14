@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
-import { navLinks, resumeUrl } from "@/data/navigation";
+import { navLinks } from "@/data/navigation";
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -55,17 +55,6 @@ export default function Navbar() {
               </motion.li>
             ))}
           </ul>
-
-          <motion.a
-            href={resumeUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-4 py-2 text-sm border border-[#64ffda] text-[#64ffda] rounded hover:bg-[#64ffda]/10 transition-colors"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Resume
-          </motion.a>
         </div>
       </div>
     </motion.nav>

@@ -10,8 +10,8 @@ export interface HeroData {
 
 export const heroData: HeroData = {
   name: "Fahad",
-  title: "Full-Stack Developer",
-  description: "I build exceptional digital experiences with modern web technologies. Specialized in React, Next.js, and TypeScript.",
+  title: "Full-Stack Developer & AI Enthusiast",
+  description: "I build fast, scalable, and modern web applications with exceptional user experiences using Next.js, React, TypeScript, and cutting-edge technologies.",
   cta: {
     primary: "View Projects",
     secondary: "Contact Me",
