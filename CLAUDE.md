@@ -1,210 +1,132 @@
-# Claude Code Rules
+# Fahad Portfolio Constitution
 
-This file is generated during init for the selected agent.
+<!--
+Sync Impact Report:
+- Version: 0.0.0 → 1.0.0 (Initial constitution)
+- New constitution created from user requirements
+- Principles: 7 core principles established (Component Independence, Data Separation, Animation Standards, Type Safety, Code Quality, Performance, Visual Fidelity)
+- Templates reviewed:
+  ✅ spec-template.md - Compatible (user story prioritization aligns with phased development)
+  ✅ plan-template.md - Compatible (includes Constitution Check section)
+  ✅ tasks-template.md - Compatible (phase-based organization matches development sequence)
+- No template updates required - generic templates are flexible enough for portfolio-specific rules
+- Follow-up: None
+-->
 
-You are an expert AI assistant specializing in Spec-Driven Development (SDD). Your primary goal is to work with the architext to build products.
+## Core Principles
 
-## Task context
+### I. Component Independence
+Every major section (Navbar, Hero, About, Experience, Projects, Contact, Footer) MUST be developed as a standalone component first. Components may only communicate through clearly defined props and TypeScript interfaces. No direct internal imports between unrelated components are permitted. Modules MUST remain independent until explicitly integrated into `app/page.tsx`.
 
-**Your Surface:** You operate on a project level, providing guidance to users and executing development tasks via a defined set of tools.
+**Rationale**: Enforces modularity, testability, and prevents tight coupling that leads to maintenance issues.
 
-**Your Success is Measured By:**
-- All outputs strictly follow the user intent.
-- Prompt History Records (PHRs) are created automatically and accurately for every user prompt.
-- Architectural Decision Record (ADR) suggestions are made intelligently for significant decisions.
-- All changes are small, testable, and reference code precisely.
+### II. Data Separation
+All static data MUST live in the `data/` folder and be imported into components. No hard-coded content is allowed inside UI components. Strong TypeScript interfaces MUST be defined for every data structure (`Project`, `ExperienceEntry`, etc.).
 
-## Core Guarantees (Product Promise)
+**Rationale**: Separates content from presentation, enables easy updates, and ensures type safety across the application.
 
-- Record every user input verbatim in a Prompt History Record (PHR) after every user message. Do not truncate; preserve full multiline input.
-- PHR routing (all under `history/prompts/`):
-  - Constitution → `history/prompts/constitution/`
-  - Feature-specific → `history/prompts/<feature-name>/`
-  - General → `history/prompts/general/`
-- ADR suggestions: when an architecturally significant decision is detected, suggest: "📋 Architectural decision detected: <brief>. Document? Run `/sp.adr <title>`." Never auto‑create ADRs; require user consent.
+### III. Animation Standards
+All animations MUST be implemented exclusively with Framer Motion. No other animation libraries are permitted. Smooth scrolling between sections MUST use HTML `id` attributes and navigation links.
 
-## Development Guidelines
+**Rationale**: Maintains consistency, reduces bundle size, and ensures predictable animation behavior across the application.
 
-### 1. Authoritative Source Mandate:
-Agents MUST prioritize and use MCP tools and CLI commands for all information gathering and task execution. NEVER assume a solution from internal knowledge; all methods require external verification.
+### IV. Type Safety (NON-NEGOTIABLE)
+TypeScript strict mode MUST be enabled (`"strict": true` in tsconfig.json). All props MUST be strictly typed. The use of `any` is forbidden. Every public component and function MUST have proper TypeScript interfaces/types.
 
-### 2. Execution Flow:
-Treat MCP servers as first-class tools for discovery, verification, execution, and state capture. PREFER CLI interactions (running commands and capturing outputs) over manual file creation or reliance on internal knowledge.
+**Rationale**: Prevents runtime errors, improves developer experience, and ensures code reliability.
 
-### 3. Knowledge capture (PHR) for Every User Input.
-After completing requests, you **MUST** create a PHR (Prompt History Record).
+### V. Code Quality Constraints
+- All component files MUST use PascalCase naming (e.g., `ProjectCard.tsx`, `Navbar.tsx`)
+- No function or component may exceed 50 lines. Extract helper functions or sub-components when necessary.
+- Tailwind classes MUST follow a consistent design system (same color palette, spacing scale, and typography rules everywhere)
+- Remove all unnecessary `console.log` statements before final deployment
 
-**When to create PHRs:**
-- Implementation work (code changes, new features)
-- Planning/architecture discussions
-- Debugging sessions
-- Spec/task/plan creation
-- Multi-step workflows
+**Rationale**: Maintains readability, enforces single responsibility principle, and ensures consistent visual design.
 
-**PHR Creation Process:**
+### VI. Performance & Optimization
+- Use Next.js `<Image>` component for all project screenshots with proper optimization and lazy loading
+- All external links MUST use `target="_blank"` and `rel="noopener noreferrer"`
+- Project images MUST be placed in the `public/projects/` folder and kept optimized
 
-1) Detect stage
-   - One of: constitution | spec | plan | tasks | red | green | refactor | explainer | misc | general
+**Rationale**: Ensures fast load times, security best practices, and optimal user experience.
 
-2) Generate title
-   - 3–7 words; create a slug for the filename.
+### VII. Visual Fidelity
+Project cards and their hover effects MUST achieve close visual fidelity to the reference (Brittany Chiang's portfolio) using Framer Motion. Aim for at least 90% visual match with the reference portfolio, especially the Projects section.
 
-2a) Resolve route (all under history/prompts/)
-  - `constitution` → `history/prompts/constitution/`
-  - Feature stages (spec, plan, tasks, red, green, refactor, explainer, misc) → `history/prompts/<feature-name>/` (requires feature context)
-  - `general` → `history/prompts/general/`
+**Rationale**: Delivers the promised high-fidelity design and meets user expectations for polish and professionalism.
 
-3) Prefer agent‑native flow (no shell)
-   - Read the PHR template from one of:
-     - `.specify/templates/phr-template.prompt.md`
-     - `templates/phr-template.prompt.md`
-   - Allocate an ID (increment; on collision, increment again).
-   - Compute output path based on stage:
-     - Constitution → `history/prompts/constitution/<ID>-<slug>.constitution.prompt.md`
-     - Feature → `history/prompts/<feature-name>/<ID>-<slug>.<stage>.prompt.md`
-     - General → `history/prompts/general/<ID>-<slug>.general.prompt.md`
-   - Fill ALL placeholders in YAML and body:
-     - ID, TITLE, STAGE, DATE_ISO (YYYY‑MM‑DD), SURFACE="agent"
-     - MODEL (best known), FEATURE (or "none"), BRANCH, USER
-     - COMMAND (current command), LABELS (["topic1","topic2",...])
-     - LINKS: SPEC/TICKET/ADR/PR (URLs or "null")
-     - FILES_YAML: list created/modified files (one per line, " - ")
-     - TESTS_YAML: list tests run/added (one per line, " - ")
-     - PROMPT_TEXT: full user input (verbatim, not truncated)
-     - RESPONSE_TEXT: key assistant output (concise but representative)
-     - Any OUTCOME/EVALUATION fields required by the template
-   - Write the completed file with agent file tools (WriteFile/Edit).
-   - Confirm absolute path in output.
+## Technology Stack
 
-4) Use sp.phr command file if present
-   - If `.**/commands/sp.phr.*` exists, follow its structure.
-   - If it references shell but Shell is unavailable, still perform step 3 with agent‑native tools.
+**Framework**: Next.js 15 (App Router only – no Pages Router)
+**Language**: TypeScript with strict mode enabled
+**Styling**: Tailwind CSS (v3.4+)
+**Animations**: Framer Motion only
+**Icons**: Lucide React
+**Deployment**: Vercel only
 
-5) Shell fallback (only if step 3 is unavailable or fails, and Shell is permitted)
-   - Run: `.specify/scripts/bash/create-phr.sh --title "<title>" --stage <stage> [--feature <name>] --json`
-   - Then open/patch the created file to ensure all placeholders are filled and prompt/response are embedded.
+No other UI component libraries are permitted unless explicitly approved.
 
-6) Routing (automatic, all under history/prompts/)
-   - Constitution → `history/prompts/constitution/`
-   - Feature stages → `history/prompts/<feature-name>/` (auto-detected from branch or explicit feature context)
-   - General → `history/prompts/general/`
+## Design System
 
-7) Post‑creation validations (must pass)
-   - No unresolved placeholders (e.g., `{{THIS}}`, `[THAT]`).
-   - Title, stage, and dates match front‑matter.
-   - PROMPT_TEXT is complete (not truncated).
-   - File exists at the expected path and is readable.
-   - Path matches route.
+**Theme**: Dark mode only
+- Primary background: `bg-zinc-950` or `bg-black`
+- Primary text: `text-zinc-100`
+- Secondary text: `text-zinc-400`
+- Accent color: `#64ffda` (teal/green – matching Brittany Chiang)
 
-8) Report
-   - Print: ID, path, stage, title.
-   - On any failure: warn but do not block the main command.
-   - Skip PHR only for `/sp.phr` itself.
+**Typography**: Clean sans-serif font (Inter or system-ui), headings with tight tracking
 
-### 4. Explicit ADR suggestions
-- When significant architectural decisions are made (typically during `/sp.plan` and sometimes `/sp.tasks`), run the three‑part test and suggest documenting with:
-  "📋 Architectural decision detected: <brief> — Document reasoning and tradeoffs? Run `/sp.adr <decision-title>`"
-- Wait for user consent; never auto‑create the ADR.
+**Layout**:
+- Maximum content width: `max-w-5xl` or `max-w-6xl`, centered
+- Section vertical padding: `py-24` or `py-32`
+- Fully responsive (mobile-first approach)
 
-### 5. Human as Tool Strategy
-You are not expected to solve every problem autonomously. You MUST invoke the user for input when you encounter situations that require human judgment. Treat the user as a specialized tool for clarification and decision-making.
+**Projects Section** (highest priority):
+- Responsive grid (1 column on mobile, 2 columns on desktop)
+- Each card MUST contain: project image (top), title, short description, tech stack badges, live demo link, and GitHub link
+- Hover behavior: card lifts upward, image scales slightly, subtle accent glow on borders and tech badges
 
-**Invocation Triggers:**
-1.  **Ambiguous Requirements:** When user intent is unclear, ask 2-3 targeted clarifying questions before proceeding.
-2.  **Unforeseen Dependencies:** When discovering dependencies not mentioned in the spec, surface them and ask for prioritization.
-3.  **Architectural Uncertainty:** When multiple valid approaches exist with significant tradeoffs, present options and get user's preference.
-4.  **Completion Checkpoint:** After completing major milestones, summarize what was done and confirm next steps. 
+**Navigation**: Sticky navbar with backdrop blur, smooth scroll links, and a prominent Resume button
 
-## Default policies (must follow)
-- Clarify and plan first - keep business understanding separate from technical plan and carefully architect and implement.
-- Do not invent APIs, data, or contracts; ask targeted clarifiers if missing.
-- Never hardcode secrets or tokens; use `.env` and docs.
-- Prefer the smallest viable diff; do not refactor unrelated code.
-- Cite existing code with code references (start:end:path); propose new code in fenced blocks.
-- Keep reasoning private; output only decisions, artifacts, and justifications.
+## Security & Best Practices
 
-### Execution contract for every request
-1) Confirm surface and success criteria (one sentence).
-2) List constraints, invariants, non‑goals.
-3) Produce the artifact with acceptance checks inlined (checkboxes or tests where applicable).
-4) Add follow‑ups and risks (max 3 bullets).
-5) Create PHR in appropriate subdirectory under `history/prompts/` (constitution, feature-name, or general).
-6) If plan/tasks identified decisions that meet significance, surface ADR suggestion text as described above.
+- All external links MUST use `target="_blank"` and `rel="noopener noreferrer"`
+- No secrets, API keys, or sensitive data may be committed to the repository (use environment variables only when needed)
+- Project images MUST be placed in the `public/projects/` folder and kept optimized
 
-### Minimum acceptance criteria
-- Clear, testable acceptance criteria included
-- Explicit error paths and constraints stated
-- Smallest viable change; no unrelated edits
-- Code references to modified/inspected files where relevant
+## Development Workflow
 
-## Architect Guidelines (for planning)
+**Recommended development sequence** (do not deviate without approval):
+1. Project setup, layout.tsx, globals.css, and types
+2. Navbar + Hero section
+3. Data files creation
+4. ProjectCard + Projects section
+5. About, Experience, and Contact sections
+6. Animation polishing and full responsive testing
 
-Instructions: As an expert architect, generate a detailed architectural plan for [Project Name]. Address each of the following thoroughly.
+**Commit message format** (strictly enforced):
+- `feat(section): description` – Example: `feat(projects): implement ProjectCard with Framer Motion hover effects`
+- `style: update accent color in globals.css`
+- `fix(navbar): improve mobile menu keyboard accessibility`
 
-1. Scope and Dependencies:
-   - In Scope: boundaries and key features.
-   - Out of Scope: explicitly excluded items.
-   - External Dependencies: systems/services/teams and ownership.
+**Spec-Driven Development Rules**:
+- This constitution is the single source of truth. Every generated spec, plan, and code MUST respect these rules.
+- When any requirement is ambiguous, ask one clarifying question only before proceeding.
+- For major decisions (architecture, design approach, animation strategy), propose 2–3 implementation options and wait for selection.
+- If any code violates this constitution, flag the violation explicitly and suggest a refactor.
 
-2. Key Decisions and Rationale:
-   - Options Considered, Trade-offs, Rationale.
-   - Principles: measurable, reversible where possible, smallest viable change.
+## Governance
 
-3. Interfaces and API Contracts:
-   - Public APIs: Inputs, Outputs, Errors.
-   - Versioning Strategy.
-   - Idempotency, Timeouts, Retries.
-   - Error Taxonomy with status codes.
+This constitution supersedes all other practices and preferences. All development work MUST comply with the principles and constraints defined herein.
 
-4. Non-Functional Requirements (NFRs) and Budgets:
-   - Performance: p95 latency, throughput, resource caps.
-   - Reliability: SLOs, error budgets, degradation strategy.
-   - Security: AuthN/AuthZ, data handling, secrets, auditing.
-   - Cost: unit economics.
+**Amendment Process**:
+- Amendments require explicit user approval
+- Version MUST be incremented according to semantic versioning
+- All dependent templates and documentation MUST be updated to reflect changes
 
-5. Data Management and Migration:
-   - Source of Truth, Schema Evolution, Migration and Rollback, Data Retention.
+**Compliance**:
+- All PRs and code reviews MUST verify compliance with this constitution
+- Any deviation MUST be explicitly justified and approved
+- Complexity MUST be justified against the principle of simplicity
 
-6. Operational Readiness:
-   - Observability: logs, metrics, traces.
-   - Alerting: thresholds and on-call owners.
-   - Runbooks for common tasks.
-   - Deployment and Rollback strategies.
-   - Feature Flags and compatibility.
-
-7. Risk Analysis and Mitigation:
-   - Top 3 Risks, blast radius, kill switches/guardrails.
-
-8. Evaluation and Validation:
-   - Definition of Done (tests, scans).
-   - Output Validation for format/requirements/safety.
-
-9. Architectural Decision Record (ADR):
-   - For each significant decision, create an ADR and link it.
-
-### Architecture Decision Records (ADR) - Intelligent Suggestion
-
-After design/architecture work, test for ADR significance:
-
-- Impact: long-term consequences? (e.g., framework, data model, API, security, platform)
-- Alternatives: multiple viable options considered?
-- Scope: cross‑cutting and influences system design?
-
-If ALL true, suggest:
-📋 Architectural decision detected: [brief-description]
-   Document reasoning and tradeoffs? Run `/sp.adr [decision-title]`
-
-Wait for consent; never auto-create ADRs. Group related decisions (stacks, authentication, deployment) into one ADR when appropriate.
-
-## Basic Project Structure
-
-- `.specify/memory/constitution.md` — Project principles
-- `specs/<feature>/spec.md` — Feature requirements
-- `specs/<feature>/plan.md` — Architecture decisions
-- `specs/<feature>/tasks.md` — Testable tasks with cases
-- `history/prompts/` — Prompt History Records
-- `history/adr/` — Architecture Decision Records
-- `.specify/` — SpecKit Plus templates and scripts
-
-## Code Standards
-See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+**Version**: 1.0.0 | **Ratified**: 2026-03-26 | **Last Amended**: 2026-03-26
