@@ -23,7 +23,6 @@ export const aboutData: AboutData = {
     "Cloudinary",
     "Git & GitHub",
     "REST APIs",
-    "AI Chatbot Integration",
     "RAG (Retrieval-Augmented Generation)",
     "Vercel & Render Deployment",
   ],
