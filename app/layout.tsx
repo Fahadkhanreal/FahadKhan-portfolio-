@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://your-portfolio-url.vercel.app'),
+  metadataBase: new URL('https://fahad-khan-portfolio-h8ex6fsvw-fahadkhans-projects.vercel.app'),
   title: "Fahad Khan | Full-Stack Developer & AI Enthusiast",
   description: "Full-Stack Developer specializing in Next.js, React, TypeScript, and AI-powered applications. Building fast, scalable, and modern web applications with exceptional user experiences.",
   keywords: ["Fahad Khan", "Full-Stack Developer", "Next.js", "React", "TypeScript", "AI Developer", "Web Developer", "Portfolio"],
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://your-portfolio-url.vercel.app",
+    url: "https://fahad-khan-portfolio-h8ex6fsvw-fahadkhans-projects.vercel.app",
     title: "Fahad Khan | Full-Stack Developer & AI Enthusiast",
     description: "Full-Stack Developer specializing in Next.js, React, TypeScript, and AI-powered applications. Building fast, scalable, and modern web applications.",
     siteName: "Fahad Khan Portfolio",
