@@ -13,8 +13,43 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Fahad Portfolio | Full-Stack Developer",
-  description: "Portfolio showcasing modern web development projects with Next.js, TypeScript, and React",
+  metadataBase: new URL('https://your-portfolio-url.vercel.app'),
+  title: "Fahad Khan | Full-Stack Developer & AI Enthusiast",
+  description: "Full-Stack Developer specializing in Next.js, React, TypeScript, and AI-powered applications. Building fast, scalable, and modern web applications with exceptional user experiences.",
+  keywords: ["Fahad Khan", "Full-Stack Developer", "Next.js", "React", "TypeScript", "AI Developer", "Web Developer", "Portfolio"],
+  authors: [{ name: "Fahad Khan" }],
+  creator: "Fahad Khan",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://your-portfolio-url.vercel.app",
+    title: "Fahad Khan | Full-Stack Developer & AI Enthusiast",
+    description: "Full-Stack Developer specializing in Next.js, React, TypeScript, and AI-powered applications. Building fast, scalable, and modern web applications.",
+    siteName: "Fahad Khan Portfolio",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Fahad Khan - Full-Stack Developer Portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fahad Khan | Full-Stack Developer & AI Enthusiast",
+    description: "Full-Stack Developer specializing in Next.js, React, TypeScript, and AI-powered applications.",
+    images: ["/og-image.png"],
+    creator: "@fahadkhan",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
 };
 
 export default function RootLayout({
