@@ -21,12 +21,12 @@ export const projects: Project[] = [
   },
   {
     id: 3,
-    title: "Gym Website Landing Page",
-    description: "A modern and responsive gym landing page designed to attract potential gym members with a clean and engaging UI. The website includes smooth UI interactions and WhatsApp integration for direct user inquiries, improving communication and user engagement. Fully responsive across all devices for an optimized experience.",
-    image: "/projects/gym-landing.png",
-    tech: ["HTML5", "CSS3", "JavaScript", "Framer Motion"],
-    liveUrl: "https://gym-website-six-kappa.vercel.app/",
-    githubUrl: "https://github.com/Fahadkhanreal/gym-website",
+    title: "AI Resume + ATS Builder",
+    description: "A modern SaaS platform for building professional, ATS-friendly resumes with AI-powered assistance using Google Gemini AI. Features 30+ industry-specific templates with live split-screen preview, drag & drop editor, real-time ATS scoring, job match analysis, and PDF export.",
+    image: "/projects/ai-resume-ats.png",
+    tech: ["Next.js 16", "TypeScript", "React 19", "Tailwind CSS", "Prisma", "Google Gemini AI", "Clerk Auth", "Neon PostgreSQL"],
+    liveUrl: "https://ai-resume-ats-builder.vercel.app/",
+    githubUrl: "https://github.com/Fahadkhanreal/AI-Resume-ATS-Builder",
   },
   {
     id: 4,
