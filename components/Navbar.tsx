@@ -3,7 +3,7 @@
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { navLinks } from "@/data/navigation";
+import { navLinks, resumeUrl } from "@/data/navigation";
 
 export default function Navbar() {
   const [hidden, setHidden] = useState(false);
@@ -59,6 +59,28 @@ export default function Navbar() {
                 </motion.li>
               ))}
             </ul>
+
+            {/* Resume Button - Desktop */}
+            <motion.a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center px-6 py-2.5 text-sm font-mono text-[#64ffda] border-2 border-[#64ffda]/50 rounded-lg hover:bg-[#64ffda]/10 hover:border-[#64ffda] hover:shadow-[0_0_20px_rgba(100,255,218,0.25)] transition-all duration-300"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Resume
+            </motion.a>
+
+            {/* Resume Button - Mobile (visible without opening menu) */}
+            <a
+              href={resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="md:hidden inline-flex items-center px-3.5 py-2 text-xs font-mono text-[#64ffda] border-2 border-[#64ffda]/50 rounded-lg hover:bg-[#64ffda]/10 hover:border-[#64ffda] transition-all duration-300"
+            >
+              Resume
+            </a>
 
             {/* Mobile Menu Button */}
             <button
@@ -116,11 +138,17 @@ export default function Navbar() {
               </ul>
             </nav>
 
-            {/* Footer */}
-            <div className="p-6 border-t border-zinc-800">
-              <p className="text-xs text-zinc-500 text-center">
-               Turning ideas into scalable application
-              </p>
+            {/* Resume Button - inside mobile menu */}
+            <div className="p-6 pt-2">
+              <a
+                href={resumeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMobileMenuOpen(false)}
+                className="block w-full px-4 py-3.5 text-center font-mono text-base text-[#64ffda] border-2 border-[#64ffda]/50 rounded-lg hover:bg-[#64ffda]/10 hover:border-[#64ffda] transition-all duration-300"
+              >
+                Resume
+              </a>
             </div>
           </div>
         </motion.div>
